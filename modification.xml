@@ -1,84 +1,37 @@
 <?xml version="1.0"?>
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
-<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
-<id>Loac:TopFirstPost</id>
-<version>2.0</version>
+<modification xmlns="http://www.simplemachines.org/xml/modification">
+    <id>Loac:TopFirstPost</id>
+    <version>2.0.2</version>
 
-<!-- Main code -->
+    <!-- Main code -->
 
-<file name="$boarddir/index.php">
-<operation>
-	<search position="before"><![CDATA['sticky' => array('LockTopic.php', 'Sticky'),]]></search>
-	<add><![CDATA[
-		'stickypost' => array('LockTopic.php', 'StickyPost'),
+    <file name="$boarddir/index.php">
+        <operation>
+            <search position="before"><![CDATA['sticky' => array('LockTopic.php', 'Sticky'),]]></search>
+            <add><![CDATA[
+		'stickypost' => array('Mod-TopFirstPost.php', 'StickyPost'),
 ]]></add>
-</operation>
-</file>
+        </operation>
+    </file>
 
-<file name="$sourcedir/LockTopic.php">
-<operation>
-	<search position="end"></search>
-	<add><![CDATA[
-// Sticky a first post.
-function StickyPost()
-{
-	global $db_prefix, $modSettings, $topic, $sourcedir, $smcFunc;
-	$sticky_posts = array();
- 
-	// Make sure the user can sticky it, and they are stickying *something*.
-	isAllowedTo('make_sticky');
-	// You shouldn't be able to (un)sticky a topic if the setting is disabled.
-	if (empty($modSettings['enableStickyTopics']))
-	fatal_lang_error('cannot_make_sticky', false);
-	// You can't sticky a board or something!
-	if (empty($topic))
-		fatal_lang_error(472, false);
-	checkSession('get');
-	$sticky_posts = explode(",",$modSettings['TopFirstPost']);
- 
-	if(in_array($topic,$sticky_posts)){
-		$sticky_posts = array_flip($sticky_posts);
-		unset($sticky_posts[$topic]); 
-		$sticky_posts = array_flip($sticky_posts);
-	} else {
-		$sticky_posts[]=$topic;
-	}
- 
-	$smcFunc['db_query']('', '
-		UPDATE {db_prefix}settings SET value = {string:sticky_posts}WHERE variable ={string:variable}',
-		array(
-			'sticky_posts' => implode(",", $sticky_posts),
-			'variable' => 'TopFirstPost',
-		)
-	);
- 
- 	 // Cache wipe. digger's present
-   clean_cache();
- 
-	// Take them back to the now stickied topic.
-	redirectexit('topic=' . $topic . '.' . $_REQUEST['start']);
-}
-]]></add>
-</operation>
-</file>
-
-<file name="$sourcedir/Display.php">
-<operation>
-	<search position="replace"><![CDATA[
+    <file name="$sourcedir/Display.php">
+        <operation>
+            <search position="replace"><![CDATA[
 	$messages = array();
 	$all_posters = array();
 	]]></search>
-	<add><![CDATA[
+            <add><![CDATA[
 	//$messages = array();
 	//$all_posters = array();
 	]]></add>
-</operation>
+        </operation>
 
-<operation>
-	<search position="before"><![CDATA[
+        <operation>
+            <search position="before"><![CDATA[
 	// Get each post and poster in this topic.
 	]]></search>
-	<add><![CDATA[
+            <add><![CDATA[
 	$messages = array();
 	$all_posters = array();
 
@@ -101,10 +54,10 @@ function StickyPost()
 	$smcFunc['db_free_result']($request);
 	
 	]]></add>
-</operation>
+        </operation>
 
-<operation>
-	<search position="before"><![CDATA[		// Fetch attachments.
+        <operation>
+            <search position="before"><![CDATA[		// Fetch attachments.
 		if (!empty($modSettings['attachmentEnable']) && allowedTo('view_attachments'))
 		{
 			$request = $smcFunc['db_query']('', '
@@ -115,18 +68,18 @@ function StickyPost()
 				FROM {db_prefix}attachments AS a' . (empty($modSettings['attachmentShowImages']) || empty($modSettings['attachmentThumbnails']) ? '' : '
 					LEFT JOIN {db_prefix}attachments AS thumb ON (thumb.id_attach = a.id_thumb)') . '
 				WHERE a.id_msg IN ({array_int:message_list}]]></search>
-	<add><![CDATA[,'.$tmp.']]></add>
-</operation>
-	
-<operation>
-	<search position="before"><![CDATA[
+            <add><![CDATA[,'.$tmp.']]></add>
+        </operation>
+
+        <operation>
+            <search position="before"><![CDATA[
 			ORDER BY id_msg' . (empty($options['view_newest_first']) ? '' : ' DESC'),
 			array(
 				'message_list' => $messages,
 				'new_from' => $topicinfo['new_from'],
 			)
 		);]]></search>
-	<add><![CDATA[
+            <add><![CDATA[
 	
 		// Get TopFirstMessage
 		$context['TopFirstPost_isSticky'] = in_array($topic, explode(",",$modSettings['TopFirstPost']));
@@ -139,7 +92,7 @@ function StickyPost()
 					smileys_enabled, poster_name, poster_email, approved,
 					id_msg_modified < {int:new_from} AS isRead
 				FROM {db_prefix}messages
-				WHERE ID_MSG IN ({int:TopFirstPost_ID})',
+				WHERE ID_MSG = ({int:TopFirstPost_ID})',
 				array(
 					'new_from' => $topicinfo['new_from'],
 					'TopFirstPost_ID' =>$context['TopFirstPost_ID'],
@@ -150,10 +103,10 @@ function StickyPost()
 			$context['TopFirstPost_ID'] = -1;
 		}
 	]]></add>
-</operation>
+        </operation>
 
-<operation>
-	<search position="before"><![CDATA[
+        <operation>
+            <search position="before"><![CDATA[
 	// Attempt to get the next message.
 	$message = $smcFunc['db_fetch_assoc']($messages_request);
 	if (!$message)
@@ -162,7 +115,7 @@ function StickyPost()
 		return false;
 	}
 ]]></search>
-	<add><![CDATA[
+            <add><![CDATA[
 	if (($message['id_msg'] == $context['TopFirstPost_ID']) && ($context['TopFirstPost_showed'])){
 		$message = $smcFunc['db_fetch_assoc']($messages_request);
 		if (!$message)
@@ -171,14 +124,14 @@ function StickyPost()
 
 	if (!$context['TopFirstPost_showed']) {
 		$messages_request = $context['TopFirstPost_tmp'];
-		$smcFunc['db_free_result']($context['TopFirstPost_tmp']);
+		//$smcFunc['db_free_result']($context['TopFirstPost_tmp']); // fix for mysqli
 		$context['TopFirstPost_showed'] = TRUE;
 	}
 	]]></add>
-</operation>
-<!-- Исправление нумерации ответов, начиная со второй страницы -->
-<operation>
-	<search position="replace"><![CDATA[
+        </operation>
+        <!--  -->
+        <operation>
+            <search position="replace"><![CDATA[
 	$output['is_message_author'] = $message['id_member'] == $user_info['id'];
 
 	if (empty($options['view_newest_first']))
@@ -186,7 +139,7 @@ function StickyPost()
 	else
 		$counter--;
 ]]></search>
-	<add><![CDATA[
+            <add><![CDATA[
 	$output['is_message_author'] = $message['id_member'] == $user_info['id'];
 	if (($message['id_msg'] != $context['TopFirstPost_ID']) || ($counter == 0)) {
 		if (empty($options['view_newest_first']))
@@ -195,38 +148,39 @@ function StickyPost()
 			$counter--;
 	}
 ]]></add>
-</operation>
-</file>
+        </operation>
+    </file>
 
-<!-- Curve theme -->
+    <!-- Curve theme -->
 
-<file name="$themedir/Display.template.php">
-<operation>
-	<search position="after"><![CDATA[// Can they reply? Have they turned on quick reply?]]></search>
-	<add><![CDATA[
+    <file name="$themedir/Display.template.php">
+        <operation>
+            <search position="after"><![CDATA[// Can they reply? Have they turned on quick reply?]]></search>
+            <add><![CDATA[
 		// Can the user sticky this post?
 		if (($context['can_sticky']) && ($message['id'] == $context['topic_first_message']))
 			echo '
          <li class="sticky_button"><a href="', $scripturl, '?action=stickypost;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '">', ($context['TopFirstPost_isSticky'] ? $txt['TopFirstPost_unsticky'] : $txt['TopFirstPost_sticky']), '</a></li>';
 
 ]]></add>
-</operation>
+        </operation>
 
-<operation>
-	<search position="replace"><![CDATA[empty($message['counter'])]]></search>
-	<add><![CDATA[($message['id'] == $context['topic_first_message'])]]></add>
-</operation>
+        <operation>
+            <search position="replace"><![CDATA[empty($message['counter'])]]></search>
+            <add><![CDATA[($message['id'] == $context['topic_first_message'])]]></add>
+        </operation>
 
-<operation>
-	<search position="replace"><![CDATA[<hr class="post_separator" />';]]></search>
-	<add><![CDATA[<hr class="' , !(($message['id'] == $context['topic_first_message']) && (($_REQUEST['start'] <> 0) || !empty($options['view_newest_first'])) && ($context['TopFirstPost_isSticky'])) ? 'post_separator' : 'stiky_post_separator' , '" />';]]></add>
-</operation>
-</file>
+        <operation>
+            <search position="replace"><![CDATA[<hr class="post_separator" />';]]></search>
+            <add>
+                <![CDATA[<hr class="' , !(($message['id'] == $context['topic_first_message']) && (($_REQUEST['start'] <> 0) || !empty($options['view_newest_first'])) && ($context['TopFirstPost_isSticky'])) ? 'post_separator' : 'stiky_post_separator' , '" />';]]></add>
+        </operation>
+    </file>
 
-<file name="$themedir/css/index.css">
-<operation>
-	<search position="end" />
-	<add><![CDATA[
+    <file name="$themedir/css/index.css">
+        <operation>
+            <search position="end"/>
+            <add><![CDATA[
 /* Styles for TopFirstPost mod.
 ------------------------------------------------- */
 
@@ -240,54 +194,54 @@ ul.quickbuttons li.sticky_button {
 	background-color: transparent;
 }
 ]]></add>
-	</operation>
-</file>
+        </operation>
+    </file>
 
-<!-- Core theme -->
+    <!-- Core theme -->
 
-<file name="$themes_dir/core/Display.template.php">
-<operation error="ignore">
-	<search position="before"><![CDATA[	// These are some cache image buttons we may want.]]></search>
-	<add><![CDATA[
+    <file name="$themes_dir/core/Display.template.php">
+        <operation error="ignore">
+            <search position="before"><![CDATA[	// These are some cache image buttons we may want.]]></search>
+            <add><![CDATA[
 	if($context['TopFirstPost_isSticky']){
 		$sticky_button = create_button('sticky.gif', 'TopFirstPost_unsticky_note', 'TopFirstPost_unsticky', 'align="middle"');
 	} else {
 		$sticky_button = create_button('sticky.gif', 'TopFirstPost_sticky_note', 'TopFirstPost_sticky', 'align="middle"');
 	}
 	]]></add>
-</operation>
+        </operation>
 
-<operation error="ignore">
-	<search position="replace"><![CDATA[empty($message['counter'])]]></search>
-	<add><![CDATA[($message['id'] == $context['topic_first_message'])]]></add>
-</operation>
+        <operation error="ignore">
+            <search position="replace"><![CDATA[empty($message['counter'])]]></search>
+            <add><![CDATA[($message['id'] == $context['topic_first_message'])]]></add>
+        </operation>
 
-<operation error="ignore">
-	<search position="after"><![CDATA[		// Can they reply? Have they turned on quick reply?]]></search>
-	<add><![CDATA[  // Can the user sticky this post?
+        <operation error="ignore">
+            <search position="after"><![CDATA[		// Can they reply? Have they turned on quick reply?]]></search>
+            <add><![CDATA[  // Can the user sticky this post?
 		if (($context['can_sticky']) && ($message['id'] == $context['topic_first_message']))
 			echo '
          <li><a href="', $scripturl, '?action=stickypost;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '">', $sticky_button, '</a></li>';
 ]]></add>
-</operation>
+        </operation>
 
-<operation error="ignore">
-	<search position="before"><![CDATA[echo '
+        <operation error="ignore">
+            <search position="before"><![CDATA[echo '
 				</div>
 			</div>
 		</div>';]]></search>
-	<add><![CDATA[
+            <add><![CDATA[
 	if (($message['id'] == $context['topic_first_message']) && (($_REQUEST['start'] <> 0) || !empty($options['view_newest_first'])) && ($context['TopFirstPost_isSticky'])) {
 		echo '<div class="TopFirstPost_spacer">'. $txt['TopFirstPost_continue']. '&nbsp;</div>';
 	}
 	]]></add>
-</operation>
-</file>
+        </operation>
+    </file>
 
-<file name="$themes_dir/core/css/index.css">
-<operation error="ignore">
-	<search position="end" />
-	<add><![CDATA[
+    <file name="$themes_dir/core/css/index.css">
+        <operation error="ignore">
+            <search position="end"/>
+            <add><![CDATA[
 /* Styles for TopFirstPost mod.
 ------------------------------------------------- */
 
@@ -299,7 +253,7 @@ ul.quickbuttons li.sticky_button {
 	padding: 0px 0px 7px 7px;
 }
 ]]></add>
-	</operation>
-</file>
+        </operation>
+    </file>
 
 </modification>

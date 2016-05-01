@@ -2,12 +2,9 @@
 /**
  * Project: SMF TopFirstPost Mod
  * Version: 2.0.2
- * File: add_settings.php
+ * File: hoocks.php
  * Author: Loac and simplemachines.ru community
  * License: The BSD 3-Clause License
- *
- * To run this install manually please make sure you place this
- * in the same place and SSI.php and index.php
  */
 
 global $context, $user_info;
@@ -22,16 +19,19 @@ if ((SMF == 'SSI') && !$user_info['is_admin']) {
     die('Admin privileges required.');
 }
 
-// List settings here in the format: setting_key => default_value.  Escape any "s. (" => \")
-$mod_settings = array(
-    'TopFirstPost' => '',
+if (!empty($context['uninstalling'])) {
+    $call = 'remove_integration_function';
+} else {
+    $call = 'add_integration_function';
+}
+
+$hooks = array(
+    'integrate_pre_include' => '$sourcedir/Mod-TopFirstPost.php',
+    'integrate_pre_load' => 'loadTopFirstPostHooks'
 );
 
-// Update mod settings if applicable
-foreach ($mod_settings as $new_setting => $new_value) {
-    if (!isset($modSettings[$new_setting])) {
-        updateSettings(array($new_setting => $new_value));
-    }
+foreach ($hooks as $hook => $function) {
+    $call($hook, $function);
 }
 
 if (SMF == 'SSI') {

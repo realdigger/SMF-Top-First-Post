@@ -1,30 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
-<id>Loac:TopFirstPost</id>
-<name>Top First Post</name>
-<version>2.0.1</version>
-<type>modification</type>
+    <id>Loac:TopFirstPost</id>
+    <name>Top First Post</name>
+    <version>2.0.2</version>
+    <type>modification</type>
 
-<install for="2.0 - 2.99.99">
-	<readme parsebbc="true">readme.txt</readme>	
-	<readme parsebbc="true" lang="russian-utf8">readme.russian-utf8.txt</readme>
-	<readme parsebbc="true" lang="russian">readme.russian.txt</readme>
-	<database>add_settings.php</database>
-	<require-file name="sticky.gif" destination="$imagesdir/buttons" />
-	<require-file name="sticky.gif" destination="$boarddir/Themes/core/images/buttons" />
-	<modification>modification.xml</modification>
-	<modification>languages/english.xml</modification>
-	<modification>languages/russian.xml</modification>
-	<modification>languages/russian-utf8.xml</modification>
-</install>
+    <install for="2.0 - 2.99.99">
+        <readme parsebbc="true">readme/english.txt</readme>
+        <readme parsebbc="true" lang="russian">readme/russian.txt</readme>
+        <readme parsebbc="true" lang="russian-utf8">readme/russian-utf8.txt</readme>
+        <require-dir name="Sources" destination="$boarddir"/>
+        <require-dir name="Themes" destination="$boarddir"/>
+        <code>add_settings.php</code>
+        <code>hooks.php</code>
+        <modification>modification.xml</modification>
+        <modification>languages/english.xml</modification>
+        <modification>languages/russian.xml</modification>
+        <modification>languages/russian-utf8.xml</modification>
+    </install>
 
-<uninstall for="2.0 - 2.99.99">
-	<remove-file name="$imagesdir/buttons/sticky.gif" />
-	<remove-file name="$boarddir/Themes/core/images/buttons/sticky.gif" />
-	<modification reverse="true">modification.xml</modification>
-	<modification reverse="true">languages/english.xml</modification>
-	<modification reverse="true">languages/russian.xml</modification>
-	<modification reverse="true">languages/russian-utf8.xml</modification>
-</uninstall>
+    <uninstall for="2.0 - 2.99.99">
+        <remove-file name="$sourcedir/Mod-TopFirstPost.php"/>
+        <remove-file name="$imagesdir/buttons/sticky.gif"/>
+        <remove-file name="$themedir/core/images/buttons/sticky.gif"/>
+        <code>hooks.php</code>
+        <modification reverse="true">modification.xml</modification>
+        <modification reverse="true">languages/english.xml</modification>
+        <modification reverse="true">languages/russian.xml</modification>
+        <modification reverse="true">languages/russian-utf8.xml</modification>
+    </uninstall>
 </package-info>
