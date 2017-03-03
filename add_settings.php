@@ -1,7 +1,7 @@
 <?php
 /**
  * Project: SMF TopFirstPost Mod
- * Version: 2.0.2
+ * Version: 2.0.3
  * File: add_settings.php
  * Author: Loac and simplemachines.ru community
  * License: The BSD 3-Clause License
@@ -24,7 +24,7 @@ if ((SMF == 'SSI') && !$user_info['is_admin']) {
 
 // List settings here in the format: setting_key => default_value.  Escape any "s. (" => \")
 $mod_settings = array(
-    'TopFirstPost' => '',
+    'TopFirstPost' => ',',
 );
 
 // Update mod settings if applicable
