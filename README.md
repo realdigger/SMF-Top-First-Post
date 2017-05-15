@@ -5,14 +5,14 @@
 * **Languages:** English, Russian
 
 ## Description
-This modification for stickying first post on every page of the topic. Mod adds a new button for sticky/unsticky first post.
+This modification for stickying first post on every page of the topic. Mod adds a new button for sticky/unsticky first post. Members who have permission to sticky topics can sticky posts.
 
 ![screen1](https://cloud.githubusercontent.com/assets/1187218/26079620/6bd45c58-39d4-11e7-8327-4c3a54f5a5fe.png)
 
 ![screen2](https://cloud.githubusercontent.com/assets/1187218/26079624/6f538f16-39d4-11e7-9d38-6cfe55098ce3.png)
 
 ## Описание
-Мод позволяет закрепить первое сообщение на всех страницах любой темы. Добавляет новую кнопку для закрепления/открепления первого сообщения.
+Мод позволяет закрепить первое сообщение на всех страницах любой темы. Добавляет новую кнопку для закрепления/открепления первого сообщения. Пользователи с правом на закрепление тем могут закреплять сообщения.
 	
 ![1](https://cloud.githubusercontent.com/assets/1187218/26079918/7e36f26a-39d5-11e7-8a5e-ddcf361696df.png)
 
