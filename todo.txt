@@ -1,0 +1,3 @@
+Конфликт с Good Post Bad Post
+Конфликт с Thank-o-matik
+проверить isRead в id_msg_modified < {int:new_from} AS isRead,
