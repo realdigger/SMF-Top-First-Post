@@ -3,13 +3,13 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
     <id>Loac:TopFirstPost</id>
     <name>Top First Post</name>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
     <type>modification</type>
 
     <install for="2.0 - 2.99.99">
         <readme>README.md</readme>
         <require-dir name="Sources" destination="$boarddir"/>
-        <require-dir name="Themes" destination="$boarddir"/>
+        <require-file name="Themes/default/images/buttons/sticky.gif" destination="$imagesdir/buttons"/>
         <database>add_settings.php</database>
         <database>hooks.php</database>
         <modification>modification.xml</modification>
@@ -21,7 +21,6 @@
     <uninstall for="2.0 - 2.99.99">
         <remove-file name="$sourcedir/Mod-TopFirstPost.php"/>
         <remove-file name="$imagesdir/buttons/sticky.gif"/>
-        <remove-file name="$themedir/core/images/buttons/sticky.gif"/>
         <database>hooks.php</database>
         <modification reverse="true">modification.xml</modification>
         <modification reverse="true">languages/english.xml</modification>
