@@ -1,3 +1,0 @@
-[center][b]Top First Post[/b][/center]
-
-This modification for stickying first post on every page of forum topic.

@@ -1,19 +1,26 @@
 <?php
 /**
  * Project: SMF TopFirstPost Mod
- * Version: 2.0.2
+ * Version: 2.0.4
  * File: Mod-TopFirstPost.php
  * Author: Loac and simplemachines.ru community
  * License: The BSD 3-Clause License
  */
 
+/**
+ * Load all needed hooks
+ */
+function loadTopFirstPostHooks()
+{
+    add_integration_function('integrate_menu_buttons', 'addTopFirstPostCopyright', false);
+}
 
 /**
  *  Sticky a first post
  */
 function StickyPost()
 {
-    global $db_prefix, $modSettings, $topic, $sourcedir, $smcFunc;
+    global $db_prefix, $modSettings, $topic, $smcFunc;
 
     // Make sure the user can sticky it, and they are stickying *something*.
     isAllowedTo('make_sticky');
@@ -53,4 +60,15 @@ function StickyPost()
     // Take them back to the now stickied topic.
     redirectexit('topic=' . $topic . '.' . $_REQUEST['start']);
 }
- 
+
+/**
+ * Add mod copyright to the forum credit's page
+ */
+function addTopFirstPostCopyright()
+{
+    global $context;
+
+    if ($context['current_action'] == 'credits') {
+        $context['copyrights']['mods'][] = '<a href="https://github.com/realdigger/SMF-Top-First-Post" target="_blank">Top First Post</a> &copy; 2006-2017, Loac and simplemachines.ru';
+    }
+}

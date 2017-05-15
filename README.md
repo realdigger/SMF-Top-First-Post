@@ -2,6 +2,7 @@
 * **Author:** Loac and simplemachines.ru community
 * **License:** The BSD 3-Clause License
 * **Compatible with:** SMF 2.0
+* **Languages:** English, Russian
 
 ## Description
 This modification for stickying first post on every page of forum topic.
@@ -12,6 +13,9 @@ This modification for stickying first post on every page of forum topic.
 	Мод позволяет закрепить первое сообщение на всех страницах любой темы.
 
 История:
+
+    v2.0.4
+    - Незначительные улучшения.
     
     v2.0.3
     - Исправлена ошибка установщика.

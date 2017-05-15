@@ -1,8 +1,8 @@
 <?php
 /**
  * Project: SMF TopFirstPost Mod
- * Version: 2.0.2
- * File: hoocks.php
+ * Version: 2.0.4
+ * File: hooks.php
  * Author: Loac and simplemachines.ru community
  * License: The BSD 3-Clause License
  */
