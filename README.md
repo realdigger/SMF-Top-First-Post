@@ -9,12 +9,16 @@ This modification for stickying first post on every page of the topic. Mod adds 
 
 ![screen1](https://cloud.githubusercontent.com/assets/1187218/26079620/6bd45c58-39d4-11e7-8327-4c3a54f5a5fe.png)
 
+![screen2](https://cloud.githubusercontent.com/assets/1187218/26079624/6f538f16-39d4-11e7-9d38-6cfe55098ce3.png)
+
 ## Описание
 Для чего мод:
 
-	Мод позволяет закрепить первое сообщение на всех страницах любой темы.
+Мод позволяет закрепить первое сообщение на всех страницах любой темы. Добавляет новую кнопку для закрепления/открепления первого сообщения.
+	
+![1](https://cloud.githubusercontent.com/assets/1187218/26079918/7e36f26a-39d5-11e7-8a5e-ddcf361696df.png)
 
-![screen2](https://cloud.githubusercontent.com/assets/1187218/26079624/6f538f16-39d4-11e7-9d38-6cfe55098ce3.png)
+![2](https://cloud.githubusercontent.com/assets/1187218/26079919/7e4c4674-39d5-11e7-8dee-ace7cc9bc371.png)	
 
 История:
 
