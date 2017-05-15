@@ -5,14 +5,21 @@
 * **Languages:** English, Russian
 
 ## Description
-This modification for stickying first post on every page of forum topic.
+This modification for stickying first post on every page of the topic. Mod adds a new button for sticky/unsticky first post.
+
+![screen1](https://cloud.githubusercontent.com/assets/1187218/26079620/6bd45c58-39d4-11e7-8327-4c3a54f5a5fe.png)
 
 ## Описание
 Для чего мод:
 
 	Мод позволяет закрепить первое сообщение на всех страницах любой темы.
 
+![screen2](https://cloud.githubusercontent.com/assets/1187218/26079624/6f538f16-39d4-11e7-9d38-6cfe55098ce3.png)
+
 История:
+
+    v2.0.5
+    - Исправлена установка картинки для кнопки в дополнительные темы оформления.
 
     v2.0.4
     - Незначительные улучшения.
