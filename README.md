@@ -4,12 +4,18 @@
 * **Compatible with:** SMF 2.0
 * **Languages:** English, Russian
 
+## Installation  
+Download and install latest release tar.gz file from [releases page](https://github.com/realdigger/SMF-Top-First-Post/releases).
+
 ## Description
 This modification for stickying first post on every page of the topic. Mod adds a new button for sticky/unsticky first post. Members who have permission to sticky topics can sticky posts.
 
 ![screen1](https://cloud.githubusercontent.com/assets/1187218/26079620/6bd45c58-39d4-11e7-8327-4c3a54f5a5fe.png)
 
 ![screen2](https://cloud.githubusercontent.com/assets/1187218/26079624/6f538f16-39d4-11e7-9d38-6cfe55098ce3.png)
+
+## Установка    
+Загрузите и установите файл tar.gz актуальной версии со [страницы загрузок](https://github.com/realdigger/SMF-Top-First-Post/releases).
 
 ## Описание
 Мод позволяет закрепить первое сообщение на всех страницах любой темы. Добавляет новую кнопку для закрепления/открепления первого сообщения. Пользователи с правом на закрепление тем могут закреплять сообщения.
