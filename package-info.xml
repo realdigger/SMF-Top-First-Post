@@ -7,7 +7,7 @@
     <type>modification</type>
 
     <install for="2.0 - 2.99.99">
-        <readme>README.md</readme>
+        <readme>README.bbc</readme>
         <require-dir name="Sources" destination="$boarddir"/>
         <require-file name="Themes/default/images/buttons/sticky.gif" destination="$imagesdir/buttons"/>
         <database>add_settings.php</database>
