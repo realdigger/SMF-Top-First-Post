@@ -200,7 +200,7 @@ ul.quickbuttons li.sticky_button {
     <!-- Core theme -->
 
     <file name="$themes_dir/core/Display.template.php">
-        <operation error="ignore">
+        <operation error="skip">
             <search position="before"><![CDATA[	// These are some cache image buttons we may want.]]></search>
             <add><![CDATA[
 	if($context['TopFirstPost_isSticky']){
@@ -211,12 +211,12 @@ ul.quickbuttons li.sticky_button {
 	]]></add>
         </operation>
 
-        <operation error="ignore">
+        <operation error="skip">
             <search position="replace"><![CDATA[empty($message['counter'])]]></search>
             <add><![CDATA[($message['id'] == $context['topic_first_message'])]]></add>
         </operation>
 
-        <operation error="ignore">
+        <operation error="skip">
             <search position="after"><![CDATA[		// Can they reply? Have they turned on quick reply?]]></search>
             <add><![CDATA[  // Can the user sticky this post?
 		if (($context['can_sticky']) && ($message['id'] == $context['topic_first_message']))
@@ -225,7 +225,7 @@ ul.quickbuttons li.sticky_button {
 ]]></add>
         </operation>
 
-        <operation error="ignore">
+        <operation error="skip">
             <search position="before"><![CDATA[echo '
 				</div>
 			</div>
@@ -239,7 +239,7 @@ ul.quickbuttons li.sticky_button {
     </file>
 
     <file name="$themes_dir/core/css/index.css">
-        <operation error="ignore">
+        <operation error="skip">
             <search position="end"/>
             <add><![CDATA[
 /* Styles for TopFirstPost mod.
