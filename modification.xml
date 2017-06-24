@@ -99,7 +99,7 @@
 				)
 			);
 		}else{
-			$context['TopFirstPost_showed'] = TRUE;
+			$context['TopFirstPost_showed'] = true;
 			$context['TopFirstPost_ID'] = -1;
 		}
 	]]></add>
@@ -124,8 +124,7 @@
 
 	if (!$context['TopFirstPost_showed']) {
 		$messages_request = $context['TopFirstPost_tmp'];
-		//$smcFunc['db_free_result']($context['TopFirstPost_tmp']); // fix for mysqli
-		$context['TopFirstPost_showed'] = TRUE;
+		$context['TopFirstPost_showed'] = true;
 	}
 	]]></add>
         </operation>
