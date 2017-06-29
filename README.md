@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/realdigger/SMF-Top-First-Post.svg?branch=master)](https://travis-ci.org/realdigger/SMF-Top-First-Post)
 # SMF Top First Post mod
 * **Author:** Loac and simplemachines.ru community
 * **License:** The BSD 3-Clause License
