@@ -1,5 +1,9 @@
+[![GitHub release](https://img.shields.io/github/release/realdigger/SMF-Top-First-Post.svg)](https://github.com/realdigger/SMF-Top-First-Post/releases)
 [![Build Status](https://travis-ci.org/realdigger/SMF-Top-First-Post.svg?branch=master)](https://travis-ci.org/realdigger/SMF-Top-First-Post)
-# SMF Top First Post mod
+[![SMF](https://img.shields.io/badge/SMF-2.0-blue.svg?style==flat)](https://simplemachines.org)
+[![license](https://img.shields.io/github/license/realdigger/SMF-Top-First-Post.svg)](https://github.com/realdigger/SMF-Top-First-Post/blob/master/LICENSE.txt)
+# SMF Top First Post mod [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=SMF%20Top%20First%20Post.&url=https://github.com/realdigger/SMF-Top-First-Post&hashtags=smf,smf_top_first_post)
+
 * **Author:** Loac and simplemachines.ru community
 * **License:** The BSD 3-Clause License
 * **Compatible with:** SMF 2.0
